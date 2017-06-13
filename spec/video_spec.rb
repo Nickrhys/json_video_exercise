@@ -40,8 +40,16 @@ describe "Video" do
     it "outputs the total views" do
       expect{Video::total_views(videos)}.to output("The total number of views for all videos is 90\n").to_stdout
     end
+
+    it "works out the average time between videos" do
+      expect{Video::average_time_between(videos)}.to output("The mean average time interval (in hours, minutes and seconds) between all videos is 01:00:00\n").to_stdout
+    end
   end
   it "adds commas to long numbers" do
     expect(Video::add_commas_to("1234567890")).to eq("1,234,567,890")
+  end
+
+  it "changes seconds into a string with time displayed by hours, minutes and seconds" do
+    expect(Video::time_as_string(3666)).to eq "01:01:06"
   end
 end

@@ -1,4 +1,5 @@
 require 'json'
+require 'time'
 
 class Video
   attr_accessor :title, :views, :link, :thumbnail, :published_at, :likes, :dislikes
@@ -20,7 +21,7 @@ class Video
 
     def highest_pc_likes(videos)
       data_hash = percentage_of_likes_per_video(videos)
-      most_popular = data_hash.sort_by {|_key, value| value}.first
+      most_popular = data_hash.sort_by {|key, value| value}.first
       puts "'#{most_popular.keys[0]}' has the highest % of likes vs. dislikes (#{most_popular.values[0].round(3)}%)"
     end
 
@@ -30,8 +31,8 @@ class Video
       puts "The mean average likes vs. dislikes per video is #{mean_average.round(3)}%"
     end
 
-    def percentage_of_likes_per_video(videos)
-      videos.map do | datum |
+    def percentage_of_likes_per_video(data)
+      data.map do | datum |
         total = datum.likes + datum.dislikes
         percentage = (datum.likes / total.to_f) * 100
         {datum.title => percentage}
@@ -39,13 +40,23 @@ class Video
     end
 
     def total_views(videos)
-      views = videos.map{ |vid| vid.views }
+      views = videos.map{ |video| video.views }
       total = views.reduce(:+)
       puts "The total number of views for all videos is #{add_commas_to(total)}"
     end
 
     def add_commas_to(number)
       number.to_s.reverse.scan(/\d{3}|.+/).join(",").reverse
+    end
+
+    def average_time_between(videos)
+      dates = videos.map{ |video| Time.parse(video.published_at) }
+      average_time = dates.each_cons(2).map { |d1, d2| d1 - d2 }.inject(:+) / (dates.length - 1)
+      puts "The mean average time interval (in hours, minutes and seconds) between all videos is #{time_as_string(average_time.ceil)}"
+    end
+
+    def time_as_string(seconds)
+      Time.at(seconds).utc.strftime("%H:%M:%S")
     end
   end
 end
