@@ -32,5 +32,9 @@ describe "Video" do
     it "outputs the average likes and dislikes" do
       expect{Video::mean_average_likes(videos)}.to output("The mean average likes vs. dislikes per video is 70.0%\n").to_stdout
     end
+
+    it "returns the % of likes vs. dislikes per video" do
+      expect(Video::percentage_of_likes_per_video(videos)).to eq([{"vid 1" => 80.0}, {"vid 2" => 70.0}, {"vid 3" => 60.0 }])
+    end
   end
 end
