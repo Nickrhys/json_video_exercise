@@ -58,5 +58,40 @@ class Video
     def time_as_string(seconds)
       Time.at(seconds).utc.strftime("%H:%M:%S")
     end
+
+    def script_menu
+      puts "Welcome to the Peg statistics script for Zoella's videos."
+      puts "Please choose from one of the following options:"
+      puts "1. The title of the video with the highest percentage of likes vs. dislikes"
+      puts "2. The average (mean) percentage of likes vs. dislikes for all videos"
+      puts "3. The total number of views for all videos"
+      puts "4. The average (mean) time interval between all videos"
+      puts "0. Exit script"
+    end
+
+    def script_choice(input, videos)
+      case input
+      when "1"
+        highest_pc_likes(videos)
+      when "2"
+        mean_average_likes(videos)
+      when "3"
+        total_views(videos)
+      when "4"
+        average_time_between(videos)
+      when "0"
+        exit
+      else
+        puts "I don't know what you mean, try again"
+      end
+    end
+  end
+end
+
+def run_script
+  videos = Video::initialize_from('./lib/video_data.json')
+  loop do
+    Video::script_menu
+    Video::script_choice(STDIN.gets.chomp, videos)
   end
 end
