@@ -36,5 +36,9 @@ describe "Video" do
     it "returns the % of likes vs. dislikes per video" do
       expect(Video::percentage_of_likes_per_video(videos)).to eq([{"vid 1" => 80.0}, {"vid 2" => 70.0}, {"vid 3" => 60.0 }])
     end
+
+    it "outputs the total views" do
+      expect{Video::total_views(videos)}.to output("The total number of views for all videos is 90\n").to_stdout
+    end
   end
 end

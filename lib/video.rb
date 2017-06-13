@@ -37,5 +37,11 @@ class Video
         {datum.title => percentage}
       end
     end
+
+    def total_views(videos)
+      views = videos.map{ |vid| vid.views }
+      total = views.reduce(:+)
+      puts "The total number of views for all videos is #{total}"
+    end
   end
 end
