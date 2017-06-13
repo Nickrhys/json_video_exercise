@@ -28,5 +28,9 @@ describe "Video" do
     it "outputs the video with the most likes vs. dislikes" do
       expect{Video::highest_pc_likes(videos)}.to output("'vid 1' has the highest % of likes vs. dislikes (80.0%)\n").to_stdout
     end
+
+    it "outputs the average likes and dislikes" do
+      expect{Video::mean_average_likes(videos)}.to output("The mean average likes vs. dislikes per video is 70.0%\n").to_stdout
+    end
   end
 end

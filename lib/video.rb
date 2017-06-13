@@ -27,5 +27,15 @@ class Video
       most_popular = data_hash.sort_by {|_key, value| value}.first
       puts "'#{most_popular.keys[0]}' has the highest % of likes vs. dislikes (#{most_popular.values[0].round(3)}%)"
     end
+
+    def mean_average_likes(videos)
+      likes_percent = videos.map do | datum |
+        total = datum.likes + datum.dislikes
+        percentage = (datum.likes / total.to_f) * 100
+        {datum.title => percentage}
+      end
+      mean_average = likes_percent.map(&:values).flatten.reduce(:+) / likes_percent.count
+      puts "The mean average likes vs. dislikes per video is #{mean_average.round(3)}%"
+    end
   end
 end
