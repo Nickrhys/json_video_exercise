@@ -17,5 +17,15 @@ class Video
       json = file_to_json(file)
       json["videos"].map{ |datum| Video.new(datum) }
     end
+
+    def highest_pc_likes(videos)
+      data_hash = videos.map do | datum |
+        total = datum.likes + datum.dislikes
+        percentage = (datum.likes / total.to_f) * 100
+        {datum.title => percentage}
+      end
+      most_popular = data_hash.sort_by {|_key, value| value}.first
+      puts "'#{most_popular.keys[0]}' has the highest % of likes vs. dislikes (#{most_popular.values[0].round(3)}%)"
+    end
   end
 end

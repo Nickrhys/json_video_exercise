@@ -24,5 +24,9 @@ describe "Video" do
       expect(videos.first).to be_an_instance_of(Video)
       expect(videos).to be_a Array
     end
+
+    it "outputs the video with the most likes vs. dislikes" do
+      expect{Video::highest_pc_likes(videos)}.to output("'vid 1' has the highest % of likes vs. dislikes (80.0%)\n").to_stdout
+    end
   end
 end
