@@ -27,7 +27,7 @@ class Video
 
     def mean_average_likes(videos)
       likes_percent = percentage_of_likes_per_video(videos)
-      mean_average = likes_percent.map(&:values).flatten.reduce(:+) / likes_percent.count
+      mean_average = likes_percent.map(&:values).flatten.inject(:+) / likes_percent.count
       puts "The mean average likes vs. dislikes per video is #{mean_average.round(3)}%"
     end
 
@@ -41,7 +41,7 @@ class Video
 
     def total_views(videos)
       views = videos.map{ |video| video.views }
-      total = views.reduce(:+)
+      total = views.inject(:+)
       puts "The total number of views for all videos is #{add_commas_to(total)}"
     end
 
