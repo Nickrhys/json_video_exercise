@@ -41,4 +41,7 @@ describe "Video" do
       expect{Video::total_views(videos)}.to output("The total number of views for all videos is 90\n").to_stdout
     end
   end
+  it "adds commas to long numbers" do
+    expect(Video::add_commas_to("1234567890")).to eq("1,234,567,890")
+  end
 end

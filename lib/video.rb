@@ -41,7 +41,11 @@ class Video
     def total_views(videos)
       views = videos.map{ |vid| vid.views }
       total = views.reduce(:+)
-      puts "The total number of views for all videos is #{total}"
+      puts "The total number of views for all videos is #{add_commas_to(total)}"
+    end
+
+    def add_commas_to(number)
+      number.to_s.reverse.scan(/\d{3}|.+/).join(",").reverse
     end
   end
 end
