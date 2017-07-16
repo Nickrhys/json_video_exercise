@@ -1,0 +1,17 @@
+{
+  "type": "object",
+  "required": ["title",
+    "views",
+    "published_at",
+    "likes",
+    "dislikes"],
+  "properties": {
+    "title": {"type": "string"},
+    "views": {"type": "integer"},
+    "link": {"type": "string"},
+    "thumbnail": {"type": "string"},
+    "published_at": {"type": "string", "format": "date-time"},
+    "likes": {"type": "integer"},
+    "dislikes": {"type": "integer"}
+  }
+}

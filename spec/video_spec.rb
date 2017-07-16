@@ -14,8 +14,8 @@ describe "Video" do
 
   describe "extracting information from the JSON file" do
     before do
-      expect(File).to receive(:read).and_return(json_file)
-      expect(JSON).to receive(:parse).with(json_file).and_return(json_file)
+      expect(File).to receive(:read).and_return(json_file).twice
+      expect(JSON).to receive(:parse).with(json_file).and_return(json_file).twice
     end
 
     let(:videos) { Video::initialize_from(json_file) }

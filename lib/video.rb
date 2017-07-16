@@ -1,11 +1,18 @@
 require 'json'
 require 'time'
+require "json-schema"
 
 class Video
   attr_accessor :title, :views, :link, :thumbnail, :published_at, :likes, :dislikes
 
-  def initialize(data)
-    data.each {|key, value| public_send("#{key}=", value)}
+  def initialize(video)
+    @title = video['title']
+    @views = video['views']
+    @link = video['link']
+    @thumbnail = video['thumbnail']
+    @published_at = video['published_at']
+    @likes = video['likes']
+    @dislikes = video['dislikes']
   end
 
   class << self
@@ -16,7 +23,14 @@ class Video
 
     def initialize_from(file)
       json = file_to_json(file)
-      json["videos"].map{ |datum| Video.new(datum) }
+      json_schema = file_to_json('./lib/schema.json')
+      json["videos"].map do |video|
+        if JSON::Validator.validate(json_schema, video) == true
+          Video.new(video)
+        else
+          raise "Video not valid. Please check JSON"
+        end
+      end
     end
 
     def highest_pc_likes(videos)
