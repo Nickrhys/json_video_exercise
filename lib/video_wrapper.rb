@@ -67,38 +67,4 @@ class VideoWrapper
     Time.at(seconds).utc.strftime("%H:%M:%S")
   end
 
-  def script_menu
-    puts "Welcome to the Peg statistics script for Zoella's videos."
-    puts "Please choose from one of the following options:"
-    puts "1. The title of the video with the highest percentage of likes vs. dislikes"
-    puts "2. The average (mean) percentage of likes vs. dislikes for all videos"
-    puts "3. The total number of views for all videos"
-    puts "4. The average (mean) time interval between all videos"
-    puts "0. Exit script"
-  end
-
-  def script_choice(input, videos)
-    case input
-    when "1"
-      videos.highest_pc_likes
-    when "2"
-      videos.mean_average_likes
-    when "3"
-      videos.total_views
-    when "4"
-      videos.average_time_between
-    when "0"
-      exit
-    else
-      puts "I don't know what you mean, try again"
-    end
-  end
-end
-
-def run_script
-  videos = VideoWrapper.new('./lib/video_data.json')
-  loop do
-    videos.script_menu
-    videos.script_choice(STDIN.gets.chomp, videos)
-  end
 end

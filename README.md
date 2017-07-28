@@ -22,6 +22,7 @@ In the terminal:
 In the terminal:
 
 * `irb`
-* `require './lib/video.rb'`
-* `run_script`
+* `require './lib/script_runner.rb'`
+* `script = ScriptRunner.new` #create a new instance of the script
+* `script.run`
 * Follow the instructions in the terminal
