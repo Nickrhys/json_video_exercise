@@ -16,7 +16,7 @@ class Video
   private
 
   def validate(video)
-    video.map do |heading, content|
+    video.each do |heading, content|
       raise "invalid heading" unless valid_keys.include?(heading)
       raise "content cannot be nil" if content.to_s.strip.empty?
     end
