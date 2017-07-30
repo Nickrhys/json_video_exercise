@@ -12,16 +12,16 @@ class RunScript
     puts "0. Exit script"
   end
 
-  def choice(input, video_wrapper)
+  def choice(input, video_analyser)
     case input
     when "1"
-      video_wrapper.highest_pc_likes
+      video_analyser.highest_pc_likes
     when "2"
-      video_wrapper.mean_average_likes
+      video_analyser.mean_average_likes
     when "3"
-      video_wrapper.total_views
+      video_analyser.total_views
     when "4"
-      video_wrapper.average_time_between
+      video_analyser.average_time_between
     when "0"
       exit
     else
@@ -30,10 +30,10 @@ class RunScript
   end
 
   def run
-    video_wrapper = VideoWrapper.new('./video_data.json')
+    video_analyser = VideoAnalyser.new('./video_data.json')
     loop do
       menu
-      choice(STDIN.gets.chomp, video_wrapper)
+      choice(STDIN.gets.chomp, video_analyser)
     end
   end
 end

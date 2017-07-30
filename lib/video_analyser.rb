@@ -1,4 +1,4 @@
-class VideoWrapper
+class VideoAnalyser
 
   attr_accessor :videos
 
