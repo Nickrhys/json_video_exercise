@@ -21,14 +21,14 @@ class VideoWrapper
   end
 
   def highest_pc_likes
-    data_hash = percentage_of_likes_per_video
-    most_popular = data_hash.sort_by { |title, pc| pc }.reverse.first
+    likes_percent = percentage_of_likes_per_video
+    most_popular = likes_percent.sort_by { |title, pc| pc }.last
     puts "'#{most_popular[0]}' has the highest % of likes vs. dislikes (#{most_popular[1].round(3)}%)"
   end
 
   def mean_average_likes
     likes_percent = percentage_of_likes_per_video
-    mean_average = likes_percent.map{ |pc| pc[1] }.flatten.inject(:+) / likes_percent.count
+    mean_average = likes_percent.map{ |pc| pc[1] }.inject(:+) / likes_percent.count
     puts "The mean average likes vs. dislikes per video is #{mean_average.round(3)}%"
   end
 
