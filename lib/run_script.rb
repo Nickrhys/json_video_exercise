@@ -1,6 +1,6 @@
-require_relative "video_wrapper"
+require_relative "run_video"
 
-class ScriptRunner
+class RunScript
 
   def menu
     puts "Welcome to the Peg statistics script for Zoella's videos."
@@ -30,7 +30,7 @@ class ScriptRunner
   end
 
   def run
-    video_wrapper = VideoWrapper.new('./lib/video_data.json')
+    video_wrapper = VideoWrapper.new('./video_data.json')
     loop do
       menu
       choice(STDIN.gets.chomp, video_wrapper)

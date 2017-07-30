@@ -1,8 +1,3 @@
-require 'json'
-require 'time'
-require "json-schema"
-require_relative "video"
-
 class VideoWrapper
 
   attr_accessor :videos
@@ -14,7 +9,7 @@ class VideoWrapper
 
   def initialize(file)
     json = file_to_json(file)
-    json_schema = file_to_json('./lib/schema.json')
+    json_schema = file_to_json('./schema.json')
     @videos = []
     json["videos"].map do |video|
       if JSON::Validator.validate(json_schema, video) == true

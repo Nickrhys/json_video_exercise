@@ -1,4 +1,4 @@
-require 'video_wrapper'
+require 'run_video'
 
 describe "VideoWrapper" do
 

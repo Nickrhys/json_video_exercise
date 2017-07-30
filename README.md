@@ -22,7 +22,7 @@ In the terminal:
 In the terminal:
 
 * `irb`
-* `require './lib/script_runner.rb'`
-* `script = ScriptRunner.new` #create a new instance of the script
+* `require './lib/run_script.rb'`
+* `script = RunScript.new` #create a new instance of the script
 * `script.run`
 * Follow the instructions in the terminal
